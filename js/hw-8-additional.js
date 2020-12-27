@@ -67,11 +67,10 @@ const images = [
 const galleryList = document.querySelector('.js-gallery');
 const lightbox = document.querySelector('.js-lightbox');
 const lightbox__overlay = document.querySelector('.lightbox__overlay');
- const lightbox__image = document.querySelector('.lightbox__image');
- const lightbox__button = document.querySelector('.lightbox__button');
+const lightbox__image = document.querySelector('.lightbox__image');
+const lightbox__button = document.querySelector('.lightbox__button');
 
-
-//================================
+//=========Add and create Gallery List==========
 
 const addGallery = images.map((elem) => {
 
@@ -96,7 +95,7 @@ const addGallery = images.map((elem) => {
  })
 galleryList.append(...addGallery);
 
-// ========================================
+// ==========Open and Close the Modal Window==========
 
 galleryList.addEventListener("click", clickOnImage);
  function clickOnImage (event)  {
@@ -125,3 +124,12 @@ function closeModal() {
 };
 
 lightbox__button.addEventListener('click', closeModal);
+
+// ==========Close the Modal Window by clicking the backdrop============
+
+function clickOnBackdrop(event) {
+  if (event.target === lightbox__overlay ) { closeModal()
+  }
+};
+
+lightbox__overlay.addEventListener('click', clickOnBackdrop);
