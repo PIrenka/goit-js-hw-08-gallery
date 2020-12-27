@@ -133,3 +133,10 @@ function clickOnBackdrop(event) {
 };
 
 lightbox__overlay.addEventListener('click', clickOnBackdrop);
+
+// ==========Close the Modal Window by clicking the Esc-key============
+
+window.addEventListener('keydown', clickOnEsc)
+function clickOnEsc(event) { 
+  if (event.code === 'Escape') {closeModal()
+  } }
