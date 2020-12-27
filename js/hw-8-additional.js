@@ -65,11 +65,10 @@ const images = [
 ];
 
 const galleryList = document.querySelector('.js-gallery');
-// const lightbox = document.querySelector('.js-lightbox');
-// const lightbox__overlay = document.querySelector('.lightbox__overlay');
-// const lightbox__content = document.querySelector('.lightbox__content');
-// const lightbox__image = document.querySelector('.lightbox__image');
-// const lightbox__button = document.querySelector('.lightbox__button');
+const lightbox = document.querySelector('.js-lightbox');
+const lightbox__overlay = document.querySelector('.lightbox__overlay');
+ const lightbox__image = document.querySelector('.lightbox__image');
+ const lightbox__button = document.querySelector('.lightbox__button');
 
 
 //================================
@@ -96,3 +95,33 @@ const addGallery = images.map((elem) => {
     return itemElement;
  })
 galleryList.append(...addGallery);
+
+// ========================================
+
+galleryList.addEventListener("click", clickOnImage);
+ function clickOnImage (event)  {
+  event.preventDefault();
+   if (event.target.nodeName !== "IMG") {
+     console.log('enter')
+     return
+  }
+   setUrl(event);
+   openModal();
+}
+
+function setUrl(url) {
+  lightbox__image.src = url.target.dataset.source;
+  lightbox__image.alt = url.target.alt;
+}
+
+function openModal() {
+ lightbox.classList.add('is-open');
+}
+
+function closeModal() {
+  lightbox.classList.remove('is-open')
+  lightbox__image.src = "";
+    lightbox__image.alt = "";
+};
+
+lightbox__button.addEventListener('click', closeModal);
